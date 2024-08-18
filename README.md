@@ -1,5 +1,5 @@
 # yt-dlp_downloader
-<p>Utilizes yt_dlp to download videos from a public or unlisted playlist to a specified directory. Saves thumbnails seperately. </p>
+<p>Utilizes yt_dlp to download videos from a public or unlisted playlist to a specified directory. Saves thumbnails into a specified relative directory. </p>
 
 <p>Change directory variables in downloader.py to set your own directories. </p>
 
