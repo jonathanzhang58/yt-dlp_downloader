@@ -1,15 +1,10 @@
 import yt_dlp
-import json
-from pytube import Playlist
-import ffmpeg
-import shutil
-import os
 import mover
 
 
-source_directory = r'path\to\where\you\want\to\save\the\videos' 
-thumbnail_directory = r'path\to\where\you\want\to\save\the\thumbnails' 
-
+source_directory = r'path\to\where\you\want\to\save\the\videos' # Add videos directory
+thumbnail_directory = r'path\to\where\you\want\to\save\the\thumbnails' # Add thumbnails directory
+playlist = 'link to playlist' # Add playlist (or video) link
 
 ydl_opts = {
     'writesubtitles': True,
@@ -28,6 +23,6 @@ ydl_opts = {
 }
 
 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-    ydl.download('https://www.youtube.com/playlist?list=PLHX1Fyul-dSs6nzZ7uAI2wHnd8NnN9EMr')
+    ydl.download('link_to_playlist')
 
 mover.move_files_to_thumbnail_directory(source_directory, thumbnail_directory)
