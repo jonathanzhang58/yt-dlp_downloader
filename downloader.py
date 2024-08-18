@@ -1,10 +1,13 @@
 import yt_dlp
 import mover
+from pytube import Playlist
+ 
 
-
-source_directory = r'path\to\where\you\want\to\save\the\videos' # Add videos directory
+video_directory = r'path\to\where\you\want\to\save\the\videos' # Add videos directory
 thumbnail_directory = r'path\to\where\you\want\to\save\the\thumbnails' # Add thumbnails directory
 playlist = 'link to playlist' # Add playlist (or video) link
+
+p = Playlist(playlist)
 
 ydl_opts = {
     'writesubtitles': True,
@@ -12,7 +15,7 @@ ydl_opts = {
     'subtitleslangs': ['en-orig','en'],
     'writethumbnail' : True,
     'paths': {
-        'home': source_directory,
+        'home': video_directory,
         'thumbnail' : thumbnail_directory 
                }, 
     'ffmpeg_location' : 'C:/yt-dlp',
@@ -22,7 +25,11 @@ ydl_opts = {
     }],
 }
 
-with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-    ydl.download('link_to_playlist')
+for video_url in p.video_urls:
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([video_url])
+    except Exception as e:
+        print(f"Error during download: {e}")
 
-mover.move_files_to_thumbnail_directory(source_directory, thumbnail_directory)
+mover.move_files_to_thumbnail_directory(video_directory, thumbnail_directory)
