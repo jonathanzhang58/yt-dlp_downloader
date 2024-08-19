@@ -4,7 +4,8 @@ from pytube import Playlist
  
 
 video_directory = r'path\to\where\you\want\to\save\the\videos' # Add videos directory
-thumbnail_directory = r'path\to\where\you\want\to\save\the\thumbnails' # Add thumbnails directory
+thumbnail_directory = r'thumbnails' # Add relative thumbnails directory
+description_directory = r'description' #add relative descriptions directory
 playlist = 'link to playlist' # Add playlist (or video) link
 
 p = Playlist(playlist)
@@ -14,9 +15,11 @@ ydl_opts = {
     'writeautomaticsub': True,
     'subtitleslangs': ['en-orig','en'],
     'writethumbnail' : True,
+    'writedescription' : True,
     'paths': {
         'home': video_directory,
-        'thumbnail' : thumbnail_directory 
+        'thumbnail' : thumbnail_directory,
+        'description' : description_directory
                }, 
     'ffmpeg_location' : 'C:/yt-dlp',
     'embedsubtitles': True,  # Embed subtitles into the video
